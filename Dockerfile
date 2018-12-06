@@ -22,7 +22,6 @@ RUN apk add --update ca-certificates \
  && apk del --purge deps \
  && rm /var/cache/apk/* \
  && rm -f /helm-${HELM_LATEST_VERSION}-linux-amd64.tar.gz
- && helm plugin install https://github.com/futuresimple/helm-secrets
 
 ENTRYPOINT ["helm"]
 CMD ["help"]

@@ -15,7 +15,7 @@ ENV HELM_LATEST_VERSION="v2.9.1"
 
 RUN apk add --update ca-certificates \
  && apk add --update -t deps wget \
- && apk add --update -t git bash \
+ && apk add --update -t git gnupg ssh \
  && wget https://storage.googleapis.com/kubernetes-helm/helm-${HELM_LATEST_VERSION}-linux-amd64.tar.gz \
  && tar -xvf helm-${HELM_LATEST_VERSION}-linux-amd64.tar.gz \
  && mv linux-amd64/helm /usr/local/bin \
@@ -23,9 +23,7 @@ RUN apk add --update ca-certificates \
  && rm /var/cache/apk/* \
  && rm -f /helm-${HELM_LATEST_VERSION}-linux-amd64.tar.gz
 
-RUN /bin/sh -c "apk add --no-cache bash curl"
-
-RUN /bin/sh -c "apk add --no-cache gnupg"
+RUN /bin/sh -c "apk add --no-cache curl bash"
 
 RUN helm init --client-only\
  && helm plugin install https://github.com/futuresimple/helm-secrets

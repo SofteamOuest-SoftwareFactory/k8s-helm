@@ -23,7 +23,7 @@ RUN apk add --update ca-certificates \
  && rm /var/cache/apk/* \
  && rm -f /helm-${HELM_LATEST_VERSION}-linux-amd64.tar.gz
 
-RUN /bin/sh -c "apk add --no-cache curl bash"
+RUN /bin/sh -c "apk add --no-cache curl bash gnupg"
 
 RUN helm init --client-only\
  && helm plugin install https://github.com/futuresimple/helm-secrets
